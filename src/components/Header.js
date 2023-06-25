@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from '../assets/logo192.png';
+import Logo from '../assets/logo.png';
 import { Box, Grid, Link } from "@mui/material";
 import UTCDatetime from "./Reusable/UTCDatetime";
 import { GitHub } from "@mui/icons-material";
@@ -20,7 +20,7 @@ function Header() {
           <Box
             component="img"
             sx={{
-              height: { xs: "16px", sm: "22px", md: "26px" },
+              height: { xs: "36px", sm: "38px", md: "46px" },
               width: "auto",
             }}
             alt="logo"

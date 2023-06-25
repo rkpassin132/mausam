@@ -14,6 +14,7 @@ const UTCDatetime = () => {
         lineHeight: 1,
         paddingRight: '2px',
         fontFamily: 'monospace',
+        marginLeft:"-2%"
       }}
     >
       {utcFullDate} GMT

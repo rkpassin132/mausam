@@ -13,8 +13,9 @@ import { ALL_DESCRIPTIONS } from "../utilities/DateConstants";
 import LoadingBox from "../components/Reusable/LoadingBox";
 import ErrorBox from "../components/Reusable/ErrorBox";
 import DefalutWeatherUi from "../components/DefalutWeatherUi";
+import Footer from "../components/Footer";
 
-function WeatherApp() {
+function WeatherApp({ themeMode, setThemeMode }) {
   const [todayWeather, setTodayWeather] = useState(null);
   const [todayForecast, setTodayForecast] = useState([]);
   const [weekForecast, setWeekForecast] = useState(null);
@@ -60,30 +61,39 @@ function WeatherApp() {
   };
 
   return (
-    <Container
-      sx={{
-        maxWidth: { xs: "95%", sm: "95%", md: "80%" },
-        margin: "0 auto",
-        padding: "1rem 0 3rem",
-      }}
-    >
-      <Header />
-      <SearchBar searchChangeCity={searchChangeCity} />
-      {isLoading && <LoadingBox />}
-      {error && (
-        <ErrorBox
-          title="Something went wrong"
-          message="Please try after sometime"
+    <>
+      <Container
+        sx={{
+          maxWidth: { xs: "95%", sm: "95%", md: "80%" },
+          margin: "0 auto",
+          padding: "1rem 0 3rem",
+        }}
+      >
+        <Header />
+        <SearchBar
+          themeMode={themeMode}
+          setThemeMode={setThemeMode}
+          searchChangeCity={searchChangeCity}
         />
-      )}
-      {todayWeather && todayForecast && weekForecast ? (
-        <WeatherDetail
-          todayWeather={todayWeather}
-          todayForecast={todayForecast}
-          weekForecast={weekForecast}
-        />
-      ) : (<DefalutWeatherUi />)}
-    </Container>
+        {isLoading && <LoadingBox />}
+        {error && (
+          <ErrorBox
+            title="Something went wrong"
+            message="Please try after sometime"
+          />
+        )}
+        {todayWeather && todayForecast && weekForecast ? (
+          <WeatherDetail
+            todayWeather={todayWeather}
+            todayForecast={todayForecast}
+            weekForecast={weekForecast}
+          />
+        ) : (
+          <DefalutWeatherUi />
+        )}
+      </Container>
+      <Footer />
+    </>
   );
 }
 

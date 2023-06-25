@@ -7,7 +7,7 @@ const getDesignTokens = (mode) => ({
         ? {
             background: {
                 default: "#fdfdfd",
-                paper: "#f5f5f5",
+                paper: "#f3f3f3",
             },
             text: {
               primary: grey[900],

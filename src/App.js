@@ -20,11 +20,24 @@ function App() {
   // Update the theme only if the mode changes
   const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
+  const changeTheme = () => {
+    var bg = document.querySelector("#root").style;
+    var footerImage = document.querySelector(".footer-image").style;
+    if (mode === "dark") {
+      bg.setProperty("--backgroundFilter", "invert(100%)");
+      footerImage.setProperty("filter", "none");
+    } else {
+      bg.setProperty("--backgroundFilter", "none");
+      footerImage.setProperty("filter", "invert(1)");
+    }
+    colorMode.toggleColorMode();
+  };
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <WeatherApp />
+        <WeatherApp themeMode={mode} setThemeMode={changeTheme} />
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
