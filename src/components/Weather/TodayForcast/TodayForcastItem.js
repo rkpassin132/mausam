@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Box, Grid, Stack, Typography, Divider } from "@mui/material";
+import { weatherIcon } from "../../../utilities/IconsUtils";
 
-function TodayForcastItem() {
+function TodayForcastItem({ data, item }) {
   return (
     <>
       <Grid item width="100px">
@@ -17,7 +18,7 @@ function TodayForcastItem() {
             component="span"
             fontSize="14px"
           >
-            6:00 AM
+          {item.time}
           </Typography>
           <Box
             component="img"
@@ -31,9 +32,7 @@ function TodayForcastItem() {
               margin: "auto",
             }}
             alt="weather"
-            src={
-              "https://w7.pngwing.com/pngs/197/886/png-transparent-art-ultraviolet-icon-cartoon-sun-cartoon-character-orange-sunflower.png"
-            }
+            src={weatherIcon(`${data.weather[0].icon}.png`)}
           />
           <Typography
             variant="h4"
@@ -41,7 +40,7 @@ function TodayForcastItem() {
             component="h4"
             fontSize="18px"
           >
-            30 °C
+            {item.temperature}
           </Typography>
         </Stack>
       </Grid>

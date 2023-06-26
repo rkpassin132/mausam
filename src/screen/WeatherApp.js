@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import Header from "../components/Header";
 import SearchBar from "../components/Search/SearchBar";
@@ -22,6 +22,16 @@ function WeatherApp({ themeMode, setThemeMode }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  useEffect(() => {
+    if (todayWeather != null) {
+      setError(
+        !todayWeather ||
+          Object.keys(todayWeather).length === 0 ||
+          todayWeather.cod === "404"
+      );
+    }
+  }, [todayForecast]);
+
   const searchChangeCity = async (enteredData) => {
     const [latitude, longitude] = enteredData.split(" ");
 
@@ -35,7 +45,6 @@ function WeatherApp({ themeMode, setThemeMode }) {
       const [todayWeatherResponse, weekForecastResponse] =
         await fetchWeatherData(latitude, longitude);
 
-      console.log(todayWeatherResponse, weekForecastResponse);
       const all_today_forecasts_list = getTodayForecastWeather(
         weekForecastResponse,
         currentDate,
@@ -48,7 +57,7 @@ function WeatherApp({ themeMode, setThemeMode }) {
       );
 
       setTodayForecast([...all_today_forecasts_list]);
-      setTodayWeather({ city: enteredData.label, ...todayWeatherResponse });
+      setTodayWeather({ city: weekForecastResponse.city.name, ...todayWeatherResponse });
       setWeekForecast({
         city: enteredData.label,
         list: all_week_forecasts_list,

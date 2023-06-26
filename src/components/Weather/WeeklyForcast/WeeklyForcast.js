@@ -1,8 +1,12 @@
 import * as React from "react";
 import { List, Paper, Stack, Typography } from "@mui/material";
 import WeeklyForcastItem from "./WeeklyForcastItem";
+import { getWeekDays } from "../../../utilities/DatetimeUtils";
+import { weatherIcon } from "../../../utilities/IconsUtils";
 
-function WeeklyForcast() {
+function WeeklyForcast({ data }) {
+  const forecastDays = getWeekDays();
+
   return (
     <Paper
       component="body"
@@ -22,16 +26,16 @@ function WeeklyForcast() {
         >
           Weekly Forcast
         </Typography>
-        <List
-          sx={{ width: "100%", maxWidth: "100%", bgcolor: "transparent" }}
-        >
-          <WeeklyForcastItem />
-          <WeeklyForcastItem />
-          <WeeklyForcastItem />
-          <WeeklyForcastItem />
-          <WeeklyForcastItem />
-          <WeeklyForcastItem />
-          <WeeklyForcastItem />
+        <List sx={{ width: "100%", maxWidth: "100%", bgcolor: "transparent" }}>
+          {data.list.map((item, idx) => (
+            <WeeklyForcastItem
+              key={idx}
+              item={item}
+              day={forecastDays[idx]}
+              src={weatherIcon(`${item.icon}`)}
+              description={item.description}
+            />
+          ))}
         </List>
       </Stack>
     </Paper>

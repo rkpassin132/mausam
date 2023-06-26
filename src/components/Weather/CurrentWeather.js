@@ -1,7 +1,11 @@
 import * as React from "react";
 import { Grid, Stack, Container, Typography, Box } from "@mui/material";
+import { getDayMonthFromDate } from "../../utilities/DatetimeUtils";
+import { weatherIcon } from "../../utilities/IconsUtils";
 
-function CurrentWeather(props) {
+const dayMonth = getDayMonthFromDate();
+
+function CurrentWeather({todayWeather}) {
   return (
     <Container>
       <Grid container spacing={2}>
@@ -9,7 +13,7 @@ function CurrentWeather(props) {
           <Stack spacing={3}>
             <div>
               <Typography variant="h4" fontWeight="600" component="h4" fontSize="28px">
-                New delhi
+                {todayWeather.name}, {todayWeather.sys.country}
               </Typography>
               <Typography
                 marginTop={0}
@@ -17,14 +21,14 @@ function CurrentWeather(props) {
                 variant="span"
                 fontWeight="600"
                 component="span"
-                fontSize="14px"
+                fontSize="16px"
               >
-                Chance of rain : 0%
+                {dayMonth}
               </Typography>
             </div>
             <div>
               <Typography variant="h3" fontWeight="600" component="h3" fontSize="48px">
-                30 °C
+                {todayWeather.main.temp} °C
               </Typography>
               <Typography
                 marginTop={0}
@@ -32,9 +36,9 @@ function CurrentWeather(props) {
                 variant="span"
                 fontWeight="600"
                 component="span"
-                fontSize="14px"
+                fontSize="16px"
               >
-                Clear sky
+                {todayWeather.weather[0].description}
               </Typography>
             </div>
           </Stack>
@@ -43,7 +47,7 @@ function CurrentWeather(props) {
           <Box
             component="img"
             sx={{
-              width: { xs: "50px", sm: "60px" },
+              width: "100%",
               height: "auto",
               display: "flex",
               alignItems: "center",
@@ -53,7 +57,7 @@ function CurrentWeather(props) {
               padding: "0",
             }}
             alt="weather"
-            src={"https://w7.pngwing.com/pngs/197/886/png-transparent-art-ultraviolet-icon-cartoon-sun-cartoon-character-orange-sunflower.png"}
+            src={weatherIcon(`${todayWeather.weather[0].icon}.png`)}
           />
         </Grid>
       </Grid>

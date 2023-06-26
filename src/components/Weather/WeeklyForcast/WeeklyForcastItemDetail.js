@@ -2,7 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import * as React from "react";
 import AirConditionIcon from "../AirCondition/AirConditionIcon";
 
-function WeeklyForcastItemDetail({ type, value }) {
+function WeeklyForcastItemDetail({ type, value, src }) {
   return (
     <Grid container xs={12}>
       <Grid item xs={12}>
@@ -18,6 +18,7 @@ function WeeklyForcastItemDetail({ type, value }) {
           <span>
             <AirConditionIcon
               type={type}
+              src={src}
               iconStyle={{
                 fontSize: "18px",
                 color: "#9fa4ac",

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Grid, Paper, Stack, Typography } from "@mui/material";
 import AirConditionItem from "./AirConditionItem";
 
-function AirCondition() {
+function AirCondition({ todayWeather }) {
   return (
     <Paper
       component="body"
@@ -13,7 +13,7 @@ function AirCondition() {
         borderRadius: 5,
       }}
     >
-        <Stack width="100%" spacing={1}>
+      <Stack width="100%" spacing={1}>
         <Typography
           sx={{
             marginTop: 0,
@@ -28,10 +28,26 @@ function AirCondition() {
           Air Condition
         </Typography>
         <Grid container spacing={2}>
-          <AirConditionItem title="Real Feel" value="30 °C" type="temperature" />
-          <AirConditionItem title="Wind" value="0.2 Km/h" type="wind" />
-          <AirConditionItem title="Clouds" value="0%" type="clouds" />
-          <AirConditionItem title="Humidity" value="3" type="humidity" />
+          <AirConditionItem
+            title="Real Feel"
+            value={`${Math.round(todayWeather.main.feels_like)} °C`}
+            type="temperature"
+          />
+          <AirConditionItem
+            title="Wind"
+            value={`${todayWeather.wind.speed} m/s`}
+            type="wind"
+          />
+          <AirConditionItem
+            title="Clouds"
+            value={`${Math.round(todayWeather.clouds.all)} %`}
+            type="clouds"
+          />
+          <AirConditionItem
+            title="Humidity"
+            value={`${Math.round(todayWeather.main.humidity)} %`}
+            type="humidity"
+          />
         </Grid>
       </Stack>
     </Paper>

@@ -2,7 +2,7 @@ import * as React from "react";
 import { ImageList, Paper, Stack, Typography } from "@mui/material";
 import TodayForcastItem from "./TodayForcastItem";
 
-function TodayForcast() {
+function TodayForcast({ todayWeather, todayForecast }) {
   return (
     <Paper
       component="body"
@@ -28,19 +28,20 @@ function TodayForcast() {
           Today's Forcast
         </Typography>
         <ImageList
-        className="horizontalBody"
+          className="horizontalBody"
           sx={{
             gridAutoFlow: "column",
-            paddingY:2,
-            marginY:1
+            paddingY: 2,
+            marginY: 1,
           }}
         >
-          <TodayForcastItem />
-          <TodayForcastItem />
-          <TodayForcastItem />
-          <TodayForcastItem />
-          <TodayForcastItem />
-          <TodayForcastItem />
+          {todayForecast.map((item, idx) => (
+            <TodayForcastItem
+              key={idx}
+              data={todayWeather}
+              item={item}
+            />
+          ))}
         </ImageList>
       </Stack>
     </Paper>
