@@ -25,7 +25,7 @@ function TodayForcast({ todayWeather, todayForecast }) {
             fontVariant: "all-petite-caps",
           }}
         >
-          Today's Forcast
+          Today's Forecast
         </Typography>
         <ImageList
           className="horizontalBody"

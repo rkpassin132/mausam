@@ -24,7 +24,7 @@ function WeeklyForcast({ data }) {
             fontVariant: "all-petite-caps",
           }}
         >
-          Weekly Forcast
+          Weekly Forecast
         </Typography>
         <List sx={{ width: "100%", maxWidth: "100%", bgcolor: "transparent" }}>
           {data.list.map((item, idx) => (
